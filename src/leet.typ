@@ -15,11 +15,14 @@
 
 #let apply-map(st, map) = {
   assert(type(st) == str)
-  let result = ""
+  let result = ()
   for codepoint in st.codepoints() {
-    result += map.at(codepoint, default: codepoint)
+    result.push(map.at(lower(codepoint), default: codepoint))
   }
-  return result
+  if result.len() > 0 {
+    return result.join("")
+  }
+  return ""
 }
 
 #let convert-to-leet(st) = {
@@ -30,9 +33,9 @@
   return apply-map(st, leet-map-inv)
 }
 
-#let leetify(body) = {
+#let leetify(body, text-only: true) = {
   show regex("\w+"): body => {
-    if body.has("text") {
+    if (not text-only or body.func() == text) and body.has("text") {
       convert-to-leet(body.text)
     } else {
       body
