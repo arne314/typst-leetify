@@ -32,12 +32,12 @@ $
 $
 ```
 
-You can also import the internally used conversion functions. Note that they require you to provide a string.
+You can also import the internally used bijective conversion functions. Note that they require you to provide a string.
 ```typ
 #import "@preview/leetify:0.1.0": convert-to-leet, convert-from-leet
 
 #convert-to-leet("Hello world!") // H3ll0 w0rld!
-#convert-to-leet("H3ll0 w0rld!") // Hello world!
+#convert-from-leet("H3ll0 w0rld!") // Hello world!
 ```
 
 ## Contribution
